@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <title>Jasmine Spec Runner</title>
+    <link rel="stylesheet" href="lib/jasmine-1.2.0/jasmine.css">
+    <script src="lib/jasmine-1.2.0/jasmine.js"></script>
+    <script src="lib/jasmine-1.2.0/jasmine-html.js"></script>
+    
+    <!-- specs -->
+    <script src="spec/PerformanceTestRunnerSpec.js"></script>
+    
+    <!-- files -->
+    <script src="../src/PerformanceTestRunner.js"></script>
+    
+    <script>
+        (function (env, reporter) {
+            env.updateInterval = 1000;
+            env.addReporter(reporter);
+            env.specFilter = reporter.specFilter.bind(reporter);
+            window.addEventListener('load', env.execute.bind(env));
+        }(jasmine.getEnv(), new jasmine.HtmlReporter()));
+    </script>
+</head>
+
+<body>
+</body>
+</html>
