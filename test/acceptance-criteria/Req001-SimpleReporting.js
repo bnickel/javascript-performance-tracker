@@ -5,7 +5,7 @@ describe("Req001: Simple reporting", function () {
         loader = new lilac.SimpleScriptLoader([
                 'acceptance-criteria/samples/old-trim.js',
                 'acceptance-criteria/samples/new-trim.js'
-            ], 'Zepto');
+            ], 'trim');
         
         reporter = new lilac.JSONReporter();
         runner = new lilac.PerformanceTestRunner(loader, reporter);
