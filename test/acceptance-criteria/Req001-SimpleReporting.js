@@ -14,9 +14,9 @@ describe("Req001: Simple reporting", function () {
     it("Loads two script files, runs them both, and outputs the results as an object", function () {
         runs(function () {
             
-            runner.addTestCases(function (trim) {
+            runner.testSet('basic comparison', function (trim) {
                 
-                test('String with text on both sides', function () {
+                this.test('String with text on both sides', function () {
                     trim('    test   ');
                 });
             });
