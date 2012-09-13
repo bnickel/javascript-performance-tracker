@@ -14,9 +14,9 @@ describe("Req001: Simple reporting", function () {
     it("Loads two script files, runs them both, and outputs the results as an object", function () {
         runs(function () {
             
-            runner.testSet('basic comparison', function (trim) {
+            runner.addTestSet('basic comparison', function (trim) {
                 
-                this.test('String with text on both sides', function () {
+                this.addTest('String with text on both sides', function () {
                     trim('    test   ');
                 });
             });
@@ -29,9 +29,13 @@ describe("Req001: Simple reporting", function () {
         }, "runner to complete", 1000);
         
         runs(function () {
-            expect(reporter.tests.length).toBe(1);
+            expect(reporter.testSets.length).toBe(1);
             
-            var test = reporter.tests[0];
+            var testSet = reporter.testSets[0];
+            expect(testSet.name).toBe('basic comparison');
+            expect(testSet.tests.length).toBe(1);
+            
+            var test = testSet.tests[0];
             expect(test.name).toBe('String with text on both sides');
             
             var results = test.results;
