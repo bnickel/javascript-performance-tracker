@@ -46,17 +46,17 @@ describe("SimpleScriptLoader", function () {
         });
         
         it("saves the results", function () {
-            expect(loader.data.length).toBe(2);
+            expect(loader.loadedObjects.length).toBe(2);
         });
         
         it("saves the results in order", function () {
-            expect(loader.data[0].src).toBe('acceptance-criteria/samples/set-a.js');
-            expect(loader.data[1].src).toBe('acceptance-criteria/samples/set-b.js');
+            expect(loader.loadedObjects[0].src).toBe('acceptance-criteria/samples/set-a.js');
+            expect(loader.loadedObjects[1].src).toBe('acceptance-criteria/samples/set-b.js');
         });
         
         it("saves the correct variable", function () {
-            expect(loader.data[0].variable()).toBe('a');
-            expect(loader.data[1].variable()).toBe('b');
+            expect(loader.loadedObjects[0].object()).toBe('a');
+            expect(loader.loadedObjects[1].object()).toBe('b');
         });
     });
 });

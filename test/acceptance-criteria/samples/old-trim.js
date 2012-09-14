@@ -1,3 +1,3 @@
 function trim(str) {
-    return str.trim();
+    return str.replace(/^[\s\uFEFF]+/,'').replace(/[\s\uFEFF]+$/g,'');
 }

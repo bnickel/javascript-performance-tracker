@@ -6,31 +6,16 @@ describe("JSONReporter", function () {
         reporter = new lilac.JSONReporter();
     });
     
-    it("accepts test sets", function () {
-        var testSet = reporter.addTestSet('set');
-        expect(reporter.testSets.length).toBe(1);
-        expect(reporter.testSets[0]).toBe(testSet);
-        expect(testSet.name).toBe('set');
-        expect(testSet.tests.length).toBe(0);
+    it("accepts tests", function () {
+        var test = reporter.addTest('test');
+        expect(reporter.tests.length).toBe(1);
+        expect(reporter.tests[0]).toBe(test);
+        expect(test.name).toBe('test');
+        expect(test.results.length).toBe(0);
     });
     
-    it("accepts tests on a set", function () {
-        var testSet = reporter.addTestSet('set');
-        var test1 = testSet.addTest('test1');
-        var test2 = testSet.addTest('test2');
-        
-        expect(testSet.tests.length).toBe(2);
-        expect(testSet.tests[0]).toBe(test1);
-        expect(testSet.tests[1]).toBe(test2);
-        
-        expect(test1.name).toBe('test1');
-        expect(test1.results.length).toBe(0);
-        expect(test2.results.length).toBe(0);
-    });
-    
-    it("accepts test results on a test", function () {
-        var testSet = reporter.addTestSet('set');
-        var test = testSet.addTest('test');
+    it("accepts test results", function () {
+        var test = reporter.addTest('test');
         var results = test.results;
         
         test.addResult('r1', 100);

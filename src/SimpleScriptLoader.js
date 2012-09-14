@@ -5,7 +5,7 @@ lilac.SimpleScriptLoader = (function () {
     function SimpleScriptLoader(sources, variableName) {
         this.sources = sources;
         this.variableName = variableName;
-        this.data = [];
+        this.loadedObjects = [];
     }
     
     function loadScript(src, callback) {
@@ -18,7 +18,7 @@ lilac.SimpleScriptLoader = (function () {
     SimpleScriptLoader.prototype = {
         isLoaded: false,
         sources: null,
-        data: null,
+        loadedObjects: null,
         variableName: null,
         
         onload: null,
@@ -40,10 +40,11 @@ lilac.SimpleScriptLoader = (function () {
             }
             
             function onComplete(src) {
-                self.data.push({
+                self.loadedObjects.push({
                     src: src,
-                    variable: window[self.variableName]
+                    object: window[self.variableName]
                 });
+                delete window[self.variableName];
                 loadNextScript();
             }
             

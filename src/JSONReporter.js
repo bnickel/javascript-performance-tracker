@@ -19,13 +19,11 @@ lilac.JSONReporter = (function () {
         }
     };
 
-    function JSONTestSetReport(name) {
-        this.name = name;
+    function JSONReporter() {
         this.tests = [];
     }
     
-    JSONTestSetReport.prototype = {
-        name: null,
+    JSONReporter.prototype = {
         tests: null,
         
         addTest: function (name) {
@@ -39,27 +37,6 @@ lilac.JSONReporter = (function () {
             this.tests[name] = test;
             
             return test;
-        }
-    };
-    
-    function JSONReporter() {
-        this.testSets = [];
-    }
-    
-    JSONReporter.prototype = {
-        testSets: null,
-        
-        addTestSet: function (name) {
-            if (this.testSets[name]) {
-                return this.testSets[name];
-            }
-            
-            var testSet = new JSONTestSetReport(name);
-            
-            this.testSets.push(testSet);
-            this.testSets[name] = testSet;
-            
-            return testSet;
         }
     };
     

@@ -14,36 +14,34 @@ describe("Req001: Simple reporting", function () {
     it("Loads two script files, runs them both, and outputs the results as an object", function () {
         runs(function () {
             
-            runner.addTestSet('basic comparison', function (trim) {
-                
-                this.addTest('String with text on both sides', function () {
+            runner.addTest('String with text on both sides', function (trim) {
+            
+                this.test = function () {
                     trim('    test   ');
-                });
+                };
             });
             
             runner.run();
         });
         
         waitsFor(function () {
-            return runner.isFinished;
+            return runner.isCompleted;
         }, "runner to complete", 1000);
         
         runs(function () {
-            expect(reporter.testSets.length).toBe(1);
+            expect(reporter.tests.length).toBe(1);
             
-            var testSet = reporter.testSets[0];
-            expect(testSet.name).toBe('basic comparison');
-            expect(testSet.tests.length).toBe(1);
-            
-            var test = testSet.tests[0];
+            var test = reporter.tests[0];
             expect(test.name).toBe('String with text on both sides');
             
             var results = test.results;
             expect(results.length).toBe(2);
-            expect(results[0].version).toBe('acceptance-criteria/samples/old-trim.js');
-            expect(results[0].operationsPerSecond).toBe(jasmine.any(Number));
-            expect(results[1].version).toBe('acceptance-criteria/samples/new-trim.js');
-            expect(results[1].operationsPerSecond).toBe(jasmine.any(Number));
+            expect(results[0].name).toBe('acceptance-criteria/samples/old-trim.js');
+            expect(results[0].operationsPerSecond).toBeGreaterThan(0);
+            expect(results[1].name).toBe('acceptance-criteria/samples/new-trim.js');
+            expect(results[1].operationsPerSecond).toBeGreaterThan(0);
+            
+            expect(results[0].operationsPerSecond).toBeGreaterThan(results[1].operationsPerSecond);
         });
     });
 });
