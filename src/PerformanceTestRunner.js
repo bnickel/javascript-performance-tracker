@@ -22,7 +22,6 @@ lilac.PerformanceTestRunner = (function () {
             }
             endTime = Date.now();
             
-            console.log('%d %d %d = %d', startTime, endTime, runs, runs / (endTime - startTime));
             return runs * 1000 / (endTime - startTime);
         }
     };
